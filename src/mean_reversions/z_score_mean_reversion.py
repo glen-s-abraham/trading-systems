@@ -134,7 +134,7 @@ def main():
     end_date = "2024-12-18"
     symbol_performance_matrix = {}
 
-    components = IndexUtils.get_index_data("NIFTY_MIDCAP")
+    components = IndexUtils.get_index_data("NIFTY100")
     for component in components:
         try:
             print(component)

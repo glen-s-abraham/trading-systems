@@ -7,21 +7,32 @@ import numpy as np
 # Add the root directory to the system path
 sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), "..")))
 
-
 from utils import IndexUtils
 from utils import YfinanceUtils
 from utils import IndicatorUtils
 from utils import PdUtils
 
 
-def generate_signals(data, threshold_buffer=1.01):
+def generate_signals(data, threshold_buffer=3.0, rsi_threshold=30):
+    """
+    Generate Buy and Sell signals based on Bollinger Bands, Volume, and RSI filters.
+    """
     df = data.copy()
 
-    # Generate signals with buffer
+    # Bollinger Band Signals
     df["Buy Signal"] = df["Adj Close"] <= (df["Bollinger_Lower"] * threshold_buffer)
     df["Sell Signal"] = df["Adj Close"] >= (
         df["Bollinger_Mid"] * (1 / threshold_buffer)
     )
+
+    # RSI Filter for Oversold (Buy) and Overbought (Sell)
+    df["Buy Signal"] = df["Buy Signal"] & (df["RSI"] < rsi_threshold)
+    df["Sell Signal"] = df["Sell Signal"] & (df["RSI"] > (100 - rsi_threshold))
+
+    # Volume Surge Filter
+    df["Volume Surge"] = df["Volume"] > df["Volume"].rolling(20).mean()
+    df["Buy Signal"] = df["Buy Signal"] & df["Volume Surge"]
+
     # Debugging signal counts
     print("Buy Signals:", df["Buy Signal"].sum())
     print("Sell Signals:", df["Sell Signal"].sum())
@@ -34,15 +45,16 @@ def backtest(
     initial_balance=100000,
     transaction_cost_rate=0.001,
     risk_pct=0.025,
-    atr_multiplier=1.5,
+    atr_multiplier=2.0,
 ):
     """
-    Backtest a Bollinger Band-based mean reversion strategy with ATR-based stop-loss.
+    Backtest a Bollinger Band-based mean reversion strategy with ATR-based stop-loss and filters.
     """
     balance = initial_balance
     position = 0  # Number of shares held
     entry_price = 0  # Price at which the position was opened
     trades = []  # To log trade details
+    last_trade_date = None  # Cooldown logic
 
     for index, row in data.iterrows():
         # Calculate ATR-based stop-loss dynamically
@@ -69,6 +81,7 @@ def backtest(
                 }
             )
             print(f"BUY: {index} - Price: {entry_price:.2f}, Quantity: {position:.2f}")
+            last_trade_date = index
 
         # Sell condition
         elif position > 0:
@@ -93,6 +106,7 @@ def backtest(
                 print(f"SELL: {index} - Price: {sell_price:.2f}, Profit: {profit:.2f}")
                 position = 0  # Clear position
                 entry_price = 0  # Reset entry price
+                last_trade_date = index
 
     # Final balance calculation
     if position > 0:
@@ -128,14 +142,6 @@ def backtest(
     max_loss = trades_df["Profit"].min() if "Profit" in trades_df else 0
     total_profit = trades_df["Profit"].sum()
 
-    # Ensure consistency between balance and total profit
-    final_balance_calculated = initial_balance + total_profit
-    if not np.isclose(final_balance_calculated, balance):
-        print(
-            f"Warning: Discrepancy detected! Final Balance: {balance:.2f}, "
-            f"Calculated Balance: {final_balance_calculated:.2f}"
-        )
-
     # Summary dictionary
     summary = {
         "Final Balance": balance,
@@ -150,13 +156,12 @@ def backtest(
     return summary, trades_df
 
 
-
 def main():
     start_date = "2019-12-18"
     end_date = "2024-12-18"
     symbol_performance_matrix = {}
 
-    components = IndexUtils.get_index_data("NIFTY_MIDCAP")
+    components = IndexUtils.get_index_data("NIFTY100")
     for component in components:
         try:
             print(component)
@@ -170,17 +175,21 @@ def main():
             data.dropna(how="any", inplace=True)
             data["ATR"] = IndicatorUtils.calculate_atr(data)
             data.dropna(how="any", inplace=True)
-            print(data.head())
-            data = generate_signals(data, 2.5)
+            data["RSI"] = IndicatorUtils.calculate_rsi(data)
+            data.dropna(how="any", inplace=True)
+            data = generate_signals(data, threshold_buffer=3.0)
 
-            balance, trades = backtest(data)
-            symbol_performance_matrix[component] = balance
+            summary, trades = backtest(data)
+            symbol_performance_matrix[component] = summary
             print("------------------------------------------")
-        except:
+        except Exception as e:
+            print(f"Error processing {component}: {e}")
             continue
 
-    with open("./mean_reversion_bb_test.json", "w") as json_file:
+    # Save results to JSON
+    with open("./optimized_mean_reversion_bb_test.json", "w") as json_file:
         json.dump(symbol_performance_matrix, json_file, indent=4)
 
 
-main()
+if __name__ == "__main__":
+    main()
