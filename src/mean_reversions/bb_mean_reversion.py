@@ -14,10 +14,18 @@ from utils import IndicatorUtils
 from utils import PdUtils
 
 
-def generate_signals(data, z_threshold=2.5):
+def generate_signals(data, threshold_buffer=1.01):
     df = data.copy()
-    df["Buy Signal"] = data["Z-Score"] < -z_threshold  # Oversold
-    df["Sell Signal"] = data["Z-Score"] > z_threshold  # Overbought
+
+    # Generate signals with buffer
+    df["Buy Signal"] = df["Adj Close"] <= (df["Bollinger_Lower"] * threshold_buffer)
+    df["Sell Signal"] = df["Adj Close"] >= (
+        df["Bollinger_Mid"] * (1 / threshold_buffer)
+    )
+    # Debugging signal counts
+    print("Buy Signals:", df["Buy Signal"].sum())
+    print("Sell Signals:", df["Sell Signal"].sum())
+
     return df
 
 
@@ -28,6 +36,9 @@ def backtest(
     risk_pct=0.025,
     atr_multiplier=1.5,
 ):
+    """
+    Backtest a Bollinger Band-based mean reversion strategy with ATR-based stop-loss.
+    """
     balance = initial_balance
     position = 0  # Number of shares held
     entry_price = 0  # Price at which the position was opened
@@ -67,8 +78,9 @@ def backtest(
                 sell_price = row["Close"]
                 trade_value = position * sell_price
                 transaction_cost = trade_value * transaction_cost_rate
-                balance += trade_value - transaction_cost
-                profit = trade_value - (entry_price * position)
+                net_trade_value = trade_value - transaction_cost
+                profit = net_trade_value - (entry_price * position)
+                balance += net_trade_value
                 trades.append(
                     {
                         "Action": "SELL",
@@ -87,8 +99,9 @@ def backtest(
         sell_price = data["Close"].iloc[-1]
         trade_value = position * sell_price
         transaction_cost = trade_value * transaction_cost_rate
-        balance += trade_value - transaction_cost
-        profit = trade_value - (entry_price * position)
+        net_trade_value = trade_value - transaction_cost
+        profit = net_trade_value - (entry_price * position)
+        balance += net_trade_value
         trades.append(
             {
                 "Action": "FINAL SELL",
@@ -115,6 +128,14 @@ def backtest(
     max_loss = trades_df["Profit"].min() if "Profit" in trades_df else 0
     total_profit = trades_df["Profit"].sum()
 
+    # Ensure consistency between balance and total profit
+    final_balance_calculated = initial_balance + total_profit
+    if not np.isclose(final_balance_calculated, balance):
+        print(
+            f"Warning: Discrepancy detected! Final Balance: {balance:.2f}, "
+            f"Calculated Balance: {final_balance_calculated:.2f}"
+        )
+
     # Summary dictionary
     summary = {
         "Final Balance": balance,
@@ -127,6 +148,7 @@ def backtest(
     }
 
     return summary, trades_df
+
 
 
 def main():
@@ -142,21 +164,22 @@ def main():
                 component, start_date=start_date, end_date=end_date
             )
             data = PdUtils.flatten_columns(data)
-            data["Z-Score"] = IndicatorUtils.calculate_z_score(data)
+            data[["Bollinger_Mid", "Bollinger_Upper", "Bollinger_Lower"]] = (
+                IndicatorUtils.calculate_bollinger_bands(data)
+            )
             data.dropna(how="any", inplace=True)
             data["ATR"] = IndicatorUtils.calculate_atr(data)
             data.dropna(how="any", inplace=True)
-            data["RSI"] = IndicatorUtils.calculate_rsi(data)
-            data.dropna(how="any", inplace=True)
-            print(data.tail())
+            print(data.head())
             data = generate_signals(data, 2.5)
+
             balance, trades = backtest(data)
             symbol_performance_matrix[component] = balance
             print("------------------------------------------")
         except:
             continue
 
-    with open("./mean_reversion_z_score_test.json", "w") as json_file:
+    with open("./mean_reversion_bb_test.json", "w") as json_file:
         json.dump(symbol_performance_matrix, json_file, indent=4)
 
 
