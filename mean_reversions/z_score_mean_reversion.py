@@ -7,8 +7,6 @@ Original file is located at
     https://colab.research.google.com/drive/1GpzFtUj1HhgftVK-GbKY1Ncff-A5n-Nh
 """
 
-!pip install yfinance
-
 import pandas as pd
 import numpy as np
 import matplotlib.pyplot as plt
@@ -74,6 +72,8 @@ def generate_signals(data,z_threshold=2.5):
   df['Sell Signal'] = data['Z-Score'] > z_threshold   # Overbought
   return df
 
+import pandas as pd
+
 def backtest(data, initial_balance=100000, transaction_cost_rate=0.001, risk_pct=0.025, atr_multiplier=1.5):
     balance = initial_balance
     position = 0  # Number of shares held
@@ -95,7 +95,7 @@ def backtest(data, initial_balance=100000, transaction_cost_rate=0.001, risk_pct
             position = position_size * (1 - transaction_cost_rate)
             entry_price = row['Close']
             balance -= position * entry_price * (1 + transaction_cost_rate)
-            trades.append({'Action': 'BUY', 'Index': index, 'Price': entry_price, 'Quantity': position})
+            trades.append({'Action': 'BUY', 'Index': index, 'Price': entry_price, 'Quantity': position, 'Balance': balance})
             print(f"BUY: {index} - Price: {entry_price:.2f}, Quantity: {position:.2f}")
 
         # Sell condition
@@ -107,8 +107,8 @@ def backtest(data, initial_balance=100000, transaction_cost_rate=0.001, risk_pct
                 trade_value = position * sell_price
                 transaction_cost = trade_value * transaction_cost_rate
                 balance += trade_value - transaction_cost
-                profit = balance - initial_balance
-                trades.append({'Action': 'SELL', 'Index': index, 'Price': sell_price, 'Profit': profit})
+                profit = trade_value - (entry_price * position)
+                trades.append({'Action': 'SELL', 'Index': index, 'Price': sell_price, 'Profit': profit, 'Balance': balance})
                 print(f"SELL: {index} - Price: {sell_price:.2f}, Profit: {profit:.2f}")
                 position = 0  # Clear position
                 entry_price = 0  # Reset entry price
@@ -119,26 +119,90 @@ def backtest(data, initial_balance=100000, transaction_cost_rate=0.001, risk_pct
         trade_value = position * sell_price
         transaction_cost = trade_value * transaction_cost_rate
         balance += trade_value - transaction_cost
-        profit = balance - initial_balance
-        trades.append({'Action': 'FINAL SELL', 'Index': data.index[-1], 'Price': sell_price, 'Profit': profit})
+        profit = trade_value - (entry_price * position)
+        trades.append({'Action': 'FINAL SELL', 'Index': data.index[-1], 'Price': sell_price, 'Profit': profit, 'Balance': balance})
         print(f"FINAL SELL: Last Price: {sell_price:.2f}, Final Profit: {profit:.2f}")
 
-    return balance, pd.DataFrame(trades)
+    # Convert trades to DataFrame
+    trades_df = pd.DataFrame(trades)
+
+    # Calculate trade statistics
+    total_trades = len(trades_df[trades_df['Action'] == 'SELL'])
+    winning_trades = trades_df[(trades_df['Action'] == 'SELL') & (trades_df['Profit'] > 0)].shape[0]
+    losing_trades = trades_df[(trades_df['Action'] == 'SELL') & (trades_df['Profit'] < 0)].shape[0]
+    max_profit = trades_df['Profit'].max() if 'Profit' in trades_df else 0
+    max_loss = trades_df['Profit'].min() if 'Profit' in trades_df else 0
+    total_profit = trades_df['Profit'].sum()
+
+    # Summary dictionary
+    summary = {
+        'Final Balance': balance,
+        'Total Trades': total_trades,
+        'Winning Trades': winning_trades,
+        'Losing Trades': losing_trades,
+        'Max Profit': max_profit,
+        'Max Loss': max_loss,
+        'Total Profit': total_profit,
+    }
+
+    return summary, trades_df
 
 import json
 
+#nifty100
 components = [
-    'ACC.NS', 'APLAPOLLO.NS', 'AUBANK.NS', 'ABCAPITAL.NS', 'ALKEM.NS',
-    'ASHOKLEY.NS', 'ASTRAL.NS', 'AUROPHARMA.NS', 'BHARATFORG.NS', 'CGPOWER.NS',
-    'COLPAL.NS', 'CONCOR.NS', 'CUMMINSIND.NS', 'DIXON.NS', 'FEDERALBNK.NS',
-    'GMRAIRPORT.NS', 'GODREJPROP.NS', 'HDFCAMC.NS', 'HINDPETRO.NS', 'IDFCFIRSTB.NS',
-    'INDHOTEL.NS', 'INDUSTOWER.NS', 'KPITTECH.NS', 'LTF.NS', 'LUPIN.NS',
-    'MRF.NS', 'MARICO.NS', 'MAXHEALTH.NS', 'MPHASIS.NS', 'MUTHOOTFIN.NS',
-    'NMDC.NS', 'OBEROIRLTY.NS', 'OFSS.NS', 'POLICYBZR.NS', 'PIIND.NS',
-    'PERSISTENT.NS', 'PETRONET.NS', 'PHOENIXLTD.NS', 'POLYCAB.NS', 'SBICARD.NS',
-    'SRF.NS', 'SAIL.NS', 'SUNDARMFIN.NS', 'SUPREMEIND.NS', 'SUZLON.NS',
-    'TATACOMM.NS', 'UPL.NS', 'IDEA.NS', 'VOLTAS.NS', 'YESBANK.NS'
+    "ADANIENT.NS", "ADANIGREEN.NS", "ADANIPORTS.NS", "ADANITRANS.NS", "AMBUJACEM.NS",
+    "APOLLOHOSP.NS", "ASIANPAINT.NS", "AUROPHARMA.NS", "AXISBANK.NS", "BAJAJ-AUTO.NS",
+    "BAJFINANCE.NS", "BAJAJFINSV.NS", "BPCL.NS", "BHARTIARTL.NS", "BIOCON.NS",
+    "BRITANNIA.NS", "CIPLA.NS", "COALINDIA.NS", "DIVISLAB.NS", "DRREDDY.NS",
+    "EICHERMOT.NS", "GRASIM.NS", "HCLTECH.NS", "HDFCBANK.NS", "HDFCLIFE.NS",
+    "HEROMOTOCO.NS", "HINDALCO.NS", "HINDUNILVR.NS", "ICICIBANK.NS", "INDUSINDBK.NS",
+    "INFY.NS", "IOC.NS", "ITC.NS", "JSWSTEEL.NS", "KOTAKBANK.NS", "LT.NS",
+    "LTI.NS", "LUPIN.NS", "MARICO.NS", "MARUTI.NS", "M&M.NS", "NTPC.NS",
+    "ONGC.NS", "POWERGRID.NS", "RELIANCE.NS", "SBILIFE.NS", "SBIN.NS",
+    "SHREECEM.NS", "SUNPHARMA.NS", "TATACONSUM.NS", "TATAMOTORS.NS", "TATASTEEL.NS",
+    "TCS.NS", "TECHM.NS", "TITAN.NS", "ULTRACEMCO.NS", "UPL.NS",
+    "VEDL.NS", "WIPRO.NS", "ZEEL.NS"
 ]
+
+# midcap
+# components = [
+#     'ACC.NS', 'APLAPOLLO.NS', 'AUBANK.NS', 'ABCAPITAL.NS', 'ALKEM.NS',
+#     'ASHOKLEY.NS', 'ASTRAL.NS', 'AUROPHARMA.NS', 'BHARATFORG.NS', 'CGPOWER.NS',
+#     'COLPAL.NS', 'CONCOR.NS', 'CUMMINSIND.NS', 'DIXON.NS', 'FEDERALBNK.NS',
+#     'GMRAIRPORT.NS', 'GODREJPROP.NS', 'HDFCAMC.NS', 'HINDPETRO.NS', 'IDFCFIRSTB.NS',
+#     'INDHOTEL.NS', 'INDUSTOWER.NS', 'KPITTECH.NS', 'LTF.NS', 'LUPIN.NS',
+#     'MRF.NS', 'MARICO.NS', 'MAXHEALTH.NS', 'MPHASIS.NS', 'MUTHOOTFIN.NS',
+#     'NMDC.NS', 'OBEROIRLTY.NS', 'OFSS.NS', 'POLICYBZR.NS', 'PIIND.NS',
+#     'PERSISTENT.NS', 'PETRONET.NS', 'PHOENIXLTD.NS', 'POLYCAB.NS', 'SBICARD.NS',
+#     'SRF.NS', 'SAIL.NS', 'SUNDARMFIN.NS', 'SUPREMEIND.NS', 'SUZLON.NS',
+#     'TATACOMM.NS', 'UPL.NS', 'IDEA.NS', 'VOLTAS.NS', 'YESBANK.NS'
+# ]
+
+#nifty smallcap
+# components = [
+#     '360ONE.NS', 'AADHARHFC.NS', 'AARTIIND.NS', 'AAVAS.NS', 'ACE.NS',
+#     'ABREL.NS', 'AEGISLOG.NS', 'AFFLE.NS', 'ARE&M.NS', 'AMBER.NS',
+#     'ANGELONE.NS', 'APARINDS.NS', 'ASTERDM.NS', 'ATUL.NS', 'BEML.NS',
+#     'BLS.NS', 'BATAINDIA.NS', 'BSOFT.NS', 'BLUESTARCO.NS', 'BRIGADE.NS',
+#     'CESC.NS', 'CASTROLIND.NS', 'CENTRALBK.NS', 'CDSL.NS', 'CHAMBLFERT.NS',
+#     'CHENNPETRO.NS', 'CAMS.NS', 'CREDITACC.NS', 'CROMPTON.NS', 'CYIENT.NS',
+#     'DATAPATTNS.NS', 'LALPATHLAB.NS', 'FINCABLES.NS', 'FSL.NS', 'FIVESTAR.NS',
+#     'GRSE.NS', 'GLENMARK.NS', 'GODIGIT.NS', 'GESHIP.NS', 'GMDCLTD.NS',
+#     'GSPL.NS', 'HBLPOWER.NS', 'HFCL.NS', 'HAPPSTMNDS.NS', 'HINDCOPPER.NS',
+#     'IFCI.NS', 'IIFL.NS', 'IRCON.NS', 'ITI.NS', 'INDIAMART.NS',
+#     'IEX.NS', 'INOXWIND.NS', 'INTELLECT.NS', 'JBMA.NS', 'J&KBANK.NS',
+#     'JWL.NS', 'JYOTHYLAB.NS', 'KPIL.NS', 'KARURVYSYA.NS', 'KAYNES.NS',
+#     'KEC.NS', 'LAURUSLABS.NS', 'MGL.NS', 'MANAPPURAM.NS', 'MCX.NS',
+#     'NATCOPHARM.NS', 'NBCC.NS', 'NCC.NS', 'NSLNISP.NS', 'NH.NS',
+#     'NATIONALUM.NS', 'NAVINFLUOR.NS', 'OLECTRA.NS', 'PNBHOUSING.NS', 'PVRINOX.NS',
+#     'PEL.NS', 'PPLPHARMA.NS', 'RBLBANK.NS', 'RITES.NS', 'RADICO.NS',
+#     'RAILTEL.NS', 'RKFORGE.NS', 'RAYMOND.NS', 'REDINGTON.NS', 'SHYAMMETL.NS',
+#     'SIGNATURE.NS', 'SONATSOFTW.NS', 'SWSOLAR.NS', 'SWANENERGY.NS', 'TANLA.NS',
+#     'TTML.NS', 'TEJASNET.NS', 'RAMCOCEM.NS', 'TITAGARH.NS', 'TRIDENT.NS',
+#     'TRITURBINE.NS', 'UCOBANK.NS', 'WELSPUNLIV.NS', 'ZEEL.NS', 'ZENSARTECH.NS'
+# ]
+
 
 
 start_date = '2019-12-18'
@@ -151,14 +215,14 @@ for component in components:
     data = flatten_columns(data)
     data = calculate_z_score(data)
     data = calculate_atr(data)
-    data = generate_signals(data)
+    data = generate_signals(data,2.5)
     balance,trades = backtest(data)
     symbol_performance_matrix[component] = balance
     print("------------------------------------------")
   except:
     continue
 
-with open("symbol_performance_matrix_nifty_midcap.json", "w") as json_file:
+with open("symbol_performance_matrix_nifty_smallcap.json", "w") as json_file:
     json_file.write(json.dumps(symbol_performance_matrix))
 
 
