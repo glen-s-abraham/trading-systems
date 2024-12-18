@@ -12,6 +12,7 @@ INDEX_MAPPING = {
     "NIFTY_SMALLCAP": "nifty_smallcap",
 }
 
+
 class IndexUtils:
     def __init__(self, file_path: str = None):
         # Default file path to utils/data/indices.json
@@ -33,9 +34,10 @@ class IndexUtils:
         except json.JSONDecodeError as e:
             raise ValueError(f"Error decoding JSON from '{self.file_path}': {e}")
 
-    def get_index_data(self, key: INDEX_KEYS):
+    @staticmethod
+    def get_index_data(key: INDEX_KEYS):
         if key not in INDEX_MAPPING:
             raise ValueError(
                 f"Invalid key '{key}'. Valid keys are: {list(INDEX_MAPPING.keys())}"
             )
-        return self.data[INDEX_MAPPING[key]]
+        return IndexUtils().data[INDEX_MAPPING[key]]
