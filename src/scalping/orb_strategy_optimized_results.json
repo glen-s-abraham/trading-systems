@@ -1,0 +1,524 @@
+{
+    "ADANIENT.NS": {
+        "Final Balance": 9840.740138987323,
+        "Total Trades": 10,
+        "Winning Trades": 3,
+        "Losing Trades": 7,
+        "Max Profit": 217.80519402489108,
+        "Max Loss": -146.23615192918078,
+        "Total Profit": -12.98928582008466
+    },
+    "ADANIGREEN.NS": {
+        "Final Balance": 10236.021823558602,
+        "Total Trades": 7,
+        "Winning Trades": 3,
+        "Losing Trades": 4,
+        "Max Profit": 369.61014502446733,
+        "Max Loss": -119.25669865037617,
+        "Total Profit": 300.9459889615905
+    },
+    "ADANIPORTS.NS": {
+        "Final Balance": 9595.133625136352,
+        "Total Trades": 12,
+        "Winning Trades": 4,
+        "Losing Trades": 8,
+        "Max Profit": 264.93006848522054,
+        "Max Loss": -168.79982441537504,
+        "Total Profit": -200.67432027964696
+    },
+    "AMBUJACEM.NS": {
+        "Final Balance": 9809.705995427354,
+        "Total Trades": 13,
+        "Winning Trades": 5,
+        "Losing Trades": 8,
+        "Max Profit": 246.76545981667914,
+        "Max Loss": -165.41534877817867,
+        "Total Profit": 42.588225378071456
+    },
+    "APOLLOHOSP.NS": {
+        "Final Balance": 9723.90268726014,
+        "Total Trades": 11,
+        "Winning Trades": 4,
+        "Losing Trades": 7,
+        "Max Profit": 212.69799339365272,
+        "Max Loss": -147.68072347744965,
+        "Total Profit": -56.5016696636294
+    },
+    "ASIANPAINT.NS": {
+        "Final Balance": 9369.239249461916,
+        "Total Trades": 7,
+        "Winning Trades": 1,
+        "Losing Trades": 6,
+        "Max Profit": 203.71024884392682,
+        "Max Loss": -213.44788748865176,
+        "Total Profit": -490.7607505380838
+    },
+    "AUROPHARMA.NS": {
+        "Final Balance": 9114.629355533445,
+        "Total Trades": 8,
+        "Winning Trades": 1,
+        "Losing Trades": 7,
+        "Max Profit": 257.466064211756,
+        "Max Loss": -214.47493382485663,
+        "Total Profit": -725.370644466555
+    },
+    "AXISBANK.NS": {
+        "Final Balance": 9042.32786891139,
+        "Total Trades": 12,
+        "Winning Trades": 3,
+        "Losing Trades": 9,
+        "Max Profit": 192.76443391014254,
+        "Max Loss": -147.80340276686184,
+        "Total Profit": -717.6721310886096
+    },
+    "BAJAJ-AUTO.NS": {
+        "Final Balance": 9068.116894631563,
+        "Total Trades": 7,
+        "Winning Trades": 0,
+        "Losing Trades": 7,
+        "Max Profit": -57.01635075219747,
+        "Max Loss": -156.787069420212,
+        "Total Profit": -791.8831053684371
+    },
+    "BAJFINANCE.NS": {
+        "Final Balance": 9672.227331312313,
+        "Total Trades": 13,
+        "Winning Trades": 5,
+        "Losing Trades": 8,
+        "Max Profit": 283.3713206425891,
+        "Max Loss": -162.94634854435753,
+        "Total Profit": -67.77266868768675
+    },
+    "BAJAJFINSV.NS": {
+        "Final Balance": 9953.970925437225,
+        "Total Trades": 11,
+        "Winning Trades": 4,
+        "Losing Trades": 7,
+        "Max Profit": 254.2499279093754,
+        "Max Loss": -127.09578704360138,
+        "Total Profit": 173.97092543722465
+    },
+    "BPCL.NS": {
+        "Final Balance": 10106.284018110915,
+        "Total Trades": 7,
+        "Winning Trades": 3,
+        "Losing Trades": 4,
+        "Max Profit": 456.0598954076813,
+        "Max Loss": -156.49165255379194,
+        "Total Profit": 246.28401811091499
+    },
+    "BHARTIARTL.NS": {
+        "Final Balance": 10664.668125934302,
+        "Total Trades": 11,
+        "Winning Trades": 7,
+        "Losing Trades": 4,
+        "Max Profit": 269.7778159233785,
+        "Max Loss": -156.3837959984303,
+        "Total Profit": 884.6681259343022
+    },
+    "BIOCON.NS": {
+        "Final Balance": 10212.229034632923,
+        "Total Trades": 11,
+        "Winning Trades": 6,
+        "Losing Trades": 5,
+        "Max Profit": 218.62238785236514,
+        "Max Loss": -134.26520097150933,
+        "Total Profit": 425.62167837083507
+    },
+    "BRITANNIA.NS": {
+        "Final Balance": 9241.261531422535,
+        "Total Trades": 9,
+        "Winning Trades": 2,
+        "Losing Trades": 7,
+        "Max Profit": 184.51860702738122,
+        "Max Loss": -242.6874288980016,
+        "Total Profit": -578.738468577465
+    },
+    "CIPLA.NS": {
+        "Final Balance": 9352.820189767739,
+        "Total Trades": 8,
+        "Winning Trades": 2,
+        "Losing Trades": 6,
+        "Max Profit": 190.93684082592517,
+        "Max Loss": -148.8916335286067,
+        "Total Profit": -487.17981023226093
+    },
+    "COALINDIA.NS": {
+        "Final Balance": 9715.735885047554,
+        "Total Trades": 8,
+        "Winning Trades": 2,
+        "Losing Trades": 6,
+        "Max Profit": 376.3769365905064,
+        "Max Loss": -149.5953512564338,
+        "Total Profit": -124.2641149524461
+    },
+    "DIVISLAB.NS": {
+        "Final Balance": 9703.405172195995,
+        "Total Trades": 9,
+        "Winning Trades": 5,
+        "Losing Trades": 4,
+        "Max Profit": 207.88117126477482,
+        "Max Loss": -525.0502129546676,
+        "Total Profit": -121.0184708025563
+    },
+    "DRREDDY.NS": {
+        "Final Balance": 9435.346648582145,
+        "Total Trades": 10,
+        "Winning Trades": 3,
+        "Losing Trades": 7,
+        "Max Profit": 181.03703346039038,
+        "Max Loss": -214.49255955879562,
+        "Total Profit": -369.5012859506387
+    },
+    "EICHERMOT.NS": {
+        "Final Balance": 9081.292578239887,
+        "Total Trades": 11,
+        "Winning Trades": 2,
+        "Losing Trades": 9,
+        "Max Profit": 246.30258064862574,
+        "Max Loss": -190.68559240298055,
+        "Total Profit": -698.707421760113
+    },
+    "GRASIM.NS": {
+        "Final Balance": 10188.182597219033,
+        "Total Trades": 9,
+        "Winning Trades": 5,
+        "Losing Trades": 4,
+        "Max Profit": 214.27312752859143,
+        "Max Loss": -170.18022292182832,
+        "Total Profit": 362.3399357385624
+    },
+    "HCLTECH.NS": {
+        "Final Balance": 9914.445628075076,
+        "Total Trades": 9,
+        "Winning Trades": 4,
+        "Losing Trades": 5,
+        "Max Profit": 203.76474398960818,
+        "Max Loss": -124.62795885337255,
+        "Total Profit": 94.44562807507646
+    },
+    "HDFCBANK.NS": {
+        "Final Balance": 9763.217726014227,
+        "Total Trades": 13,
+        "Winning Trades": 4,
+        "Losing Trades": 9,
+        "Max Profit": 267.06986209189563,
+        "Max Loss": -146.35893998488245,
+        "Total Profit": 23.217726014227082
+    },
+    "HDFCLIFE.NS": {
+        "Final Balance": 9368.641120007349,
+        "Total Trades": 6,
+        "Winning Trades": 1,
+        "Losing Trades": 5,
+        "Max Profit": 42.64084116257072,
+        "Max Loss": -147.93108375921656,
+        "Total Profit": -511.35887999265105
+    },
+    "HEROMOTOCO.NS": {
+        "Final Balance": 9261.176691800454,
+        "Total Trades": 7,
+        "Winning Trades": 1,
+        "Losing Trades": 6,
+        "Max Profit": 182.70724985280685,
+        "Max Loss": -195.43090356041284,
+        "Total Profit": -600.4090786235356
+    },
+    "HINDALCO.NS": {
+        "Final Balance": 9561.826736011593,
+        "Total Trades": 8,
+        "Winning Trades": 3,
+        "Losing Trades": 5,
+        "Max Profit": 194.156642068343,
+        "Max Loss": -180.97001290603112,
+        "Total Profit": -284.053623394625
+    },
+    "HINDUNILVR.NS": {
+        "Final Balance": 9688.636894434101,
+        "Total Trades": 14,
+        "Winning Trades": 5,
+        "Losing Trades": 9,
+        "Max Profit": 338.892890693558,
+        "Max Loss": -164.1283515707837,
+        "Total Profit": -31.363105565898877
+    },
+    "ICICIBANK.NS": {
+        "Final Balance": 9990.910786151335,
+        "Total Trades": 10,
+        "Winning Trades": 4,
+        "Losing Trades": 6,
+        "Max Profit": 262.7576351332973,
+        "Max Loss": -162.02415650502735,
+        "Total Profit": 190.91078615133483
+    },
+    "INDUSINDBK.NS": {
+        "Final Balance": 9235.684325461469,
+        "Total Trades": 9,
+        "Winning Trades": 2,
+        "Losing Trades": 7,
+        "Max Profit": 210.9102402337212,
+        "Max Loss": -179.55370418571874,
+        "Total Profit": -584.3156745385313
+    },
+    "INFY.NS": {
+        "Final Balance": 10104.623281147631,
+        "Total Trades": 13,
+        "Winning Trades": 6,
+        "Losing Trades": 7,
+        "Max Profit": 271.50648844723037,
+        "Max Loss": -216.61149680231392,
+        "Total Profit": 364.62328114763113
+    },
+    "IOC.NS": {
+        "Final Balance": 10240.045878381423,
+        "Total Trades": 7,
+        "Winning Trades": 4,
+        "Losing Trades": 3,
+        "Max Profit": 344.2203608478667,
+        "Max Loss": -220.455934655296,
+        "Total Profit": 378.75939990826646
+    },
+    "ITC.NS": {
+        "Final Balance": 9790.412957988587,
+        "Total Trades": 11,
+        "Winning Trades": 5,
+        "Losing Trades": 6,
+        "Max Profit": 197.3335459969494,
+        "Max Loss": -269.46686678869264,
+        "Total Profit": 10.41295798858664
+    },
+    "JSWSTEEL.NS": {
+        "Final Balance": 9641.05886975407,
+        "Total Trades": 11,
+        "Winning Trades": 3,
+        "Losing Trades": 8,
+        "Max Profit": 354.83823575922725,
+        "Max Loss": -332.4102122306831,
+        "Total Profit": -138.94113024593025
+    },
+    "KOTAKBANK.NS": {
+        "Final Balance": 9799.433758727995,
+        "Total Trades": 9,
+        "Winning Trades": 4,
+        "Losing Trades": 5,
+        "Max Profit": 205.10301236761188,
+        "Max Loss": -159.94581184055096,
+        "Total Profit": -20.566241272004845
+    },
+    "LT.NS": {
+        "Final Balance": 10245.283793055274,
+        "Total Trades": 11,
+        "Winning Trades": 4,
+        "Losing Trades": 7,
+        "Max Profit": 375.08957220051525,
+        "Max Loss": -143.42885367499912,
+        "Total Profit": 465.28379305527324
+    },
+    "LUPIN.NS": {
+        "Final Balance": 9840.291198928302,
+        "Total Trades": 7,
+        "Winning Trades": 3,
+        "Losing Trades": 4,
+        "Max Profit": 203.05656935246134,
+        "Max Loss": -198.4757265385524,
+        "Total Profit": -24.446124542561847
+    },
+    "MARICO.NS": {
+        "Final Balance": 10751.294359240557,
+        "Total Trades": 16,
+        "Winning Trades": 8,
+        "Losing Trades": 8,
+        "Max Profit": 316.02822341448336,
+        "Max Loss": -136.12330485609164,
+        "Total Profit": 1071.2943592405563
+    },
+    "MARUTI.NS": {
+        "Final Balance": 9641.684771533795,
+        "Total Trades": 10,
+        "Winning Trades": 2,
+        "Losing Trades": 8,
+        "Max Profit": 284.5405206224186,
+        "Max Loss": -194.73772670777362,
+        "Total Profit": -158.31522846620464
+    },
+    "M&M.NS": {
+        "Final Balance": 10277.96448331475,
+        "Total Trades": 8,
+        "Winning Trades": 4,
+        "Losing Trades": 4,
+        "Max Profit": 289.8779137668007,
+        "Max Loss": -176.5050640815316,
+        "Total Profit": 433.45622719125004
+    },
+    "NTPC.NS": {
+        "Final Balance": 10280.124919845388,
+        "Total Trades": 7,
+        "Winning Trades": 3,
+        "Losing Trades": 4,
+        "Max Profit": 322.1900913074769,
+        "Max Loss": -133.30057849039076,
+        "Total Profit": 420.1249198453879
+    },
+    "ONGC.NS": {
+        "Final Balance": 9504.612266190621,
+        "Total Trades": 10,
+        "Winning Trades": 2,
+        "Losing Trades": 8,
+        "Max Profit": 370.81886947979,
+        "Max Loss": -176.4049580423125,
+        "Total Profit": -298.80139812610014
+    },
+    "POWERGRID.NS": {
+        "Final Balance": 9749.020084917182,
+        "Total Trades": 11,
+        "Winning Trades": 4,
+        "Losing Trades": 7,
+        "Max Profit": 382.7059167055013,
+        "Max Loss": -292.0695776958564,
+        "Total Profit": -30.97991508281848
+    },
+    "RELIANCE.NS": {
+        "Final Balance": 10324.380482841865,
+        "Total Trades": 9,
+        "Winning Trades": 5,
+        "Losing Trades": 4,
+        "Max Profit": 311.4458354409617,
+        "Max Loss": -135.20824259680012,
+        "Total Profit": 502.8188395039042
+    },
+    "SBILIFE.NS": {
+        "Final Balance": 9747.861660169996,
+        "Total Trades": 6,
+        "Winning Trades": 2,
+        "Losing Trades": 4,
+        "Max Profit": 227.21790634678473,
+        "Max Loss": -265.9077829974649,
+        "Total Profit": -132.13833983000404
+    },
+    "SBIN.NS": {
+        "Final Balance": 9912.314437936802,
+        "Total Trades": 10,
+        "Winning Trades": 4,
+        "Losing Trades": 6,
+        "Max Profit": 223.48070685722996,
+        "Max Loss": -137.68941625926163,
+        "Total Profit": 112.31443793680319
+    },
+    "SHREECEM.NS": {
+        "Final Balance": 10444.221355411253,
+        "Total Trades": 14,
+        "Winning Trades": 8,
+        "Losing Trades": 6,
+        "Max Profit": 351.27298359349334,
+        "Max Loss": -155.42149099972994,
+        "Total Profit": 724.2213554112532
+    },
+    "SUNPHARMA.NS": {
+        "Final Balance": 10107.269446560544,
+        "Total Trades": 7,
+        "Winning Trades": 4,
+        "Losing Trades": 3,
+        "Max Profit": 223.68778768638003,
+        "Max Loss": -136.38752300246233,
+        "Total Profit": 247.26944656054366
+    },
+    "TATACONSUM.NS": {
+        "Final Balance": 9583.90655954234,
+        "Total Trades": 9,
+        "Winning Trades": 3,
+        "Losing Trades": 6,
+        "Max Profit": 212.71270187967275,
+        "Max Loss": -171.04177950948724,
+        "Total Profit": -236.0934404576601
+    },
+    "TATAMOTORS.NS": {
+        "Final Balance": 9878.226195323052,
+        "Total Trades": 8,
+        "Winning Trades": 3,
+        "Losing Trades": 5,
+        "Max Profit": 238.4972720933838,
+        "Max Loss": -142.8717135534407,
+        "Total Profit": 32.545101383612746
+    },
+    "TATASTEEL.NS": {
+        "Final Balance": 9949.29034870853,
+        "Total Trades": 9,
+        "Winning Trades": 4,
+        "Losing Trades": 5,
+        "Max Profit": 271.0538997789645,
+        "Max Loss": -327.6461935192747,
+        "Total Profit": 129.29034870852956
+    },
+    "TCS.NS": {
+        "Final Balance": 9822.861353529272,
+        "Total Trades": 10,
+        "Winning Trades": 4,
+        "Losing Trades": 6,
+        "Max Profit": 218.19031038782668,
+        "Max Loss": -154.69690079609245,
+        "Total Profit": 22.861353529271582
+    },
+    "TECHM.NS": {
+        "Final Balance": 9058.174659109884,
+        "Total Trades": 11,
+        "Winning Trades": 2,
+        "Losing Trades": 9,
+        "Max Profit": 189.97198672287323,
+        "Max Loss": -297.2397416837266,
+        "Total Profit": -728.1733267722984
+    },
+    "TITAN.NS": {
+        "Final Balance": 10596.156300176981,
+        "Total Trades": 11,
+        "Winning Trades": 6,
+        "Losing Trades": 5,
+        "Max Profit": 340.0295413849435,
+        "Max Loss": -154.1291858503737,
+        "Total Profit": 816.156300176981
+    },
+    "ULTRACEMCO.NS": {
+        "Final Balance": 9596.73991186781,
+        "Total Trades": 16,
+        "Winning Trades": 7,
+        "Losing Trades": 9,
+        "Max Profit": 225.41450618247654,
+        "Max Loss": -187.9934805812336,
+        "Total Profit": -83.26008813219141
+    },
+    "UPL.NS": {
+        "Final Balance": 9726.963961312404,
+        "Total Trades": 11,
+        "Winning Trades": 4,
+        "Losing Trades": 7,
+        "Max Profit": 311.35397322975405,
+        "Max Loss": -193.24978257455223,
+        "Total Profit": -69.62894241359663
+    },
+    "VEDL.NS": {
+        "Final Balance": 9399.735058970056,
+        "Total Trades": 12,
+        "Winning Trades": 4,
+        "Losing Trades": 8,
+        "Max Profit": 186.47369495649218,
+        "Max Loss": -143.62032063325023,
+        "Total Profit": -371.93500827685057
+    },
+    "WIPRO.NS": {
+        "Final Balance": 10158.533026322659,
+        "Total Trades": 9,
+        "Winning Trades": 4,
+        "Losing Trades": 5,
+        "Max Profit": 255.75964264781578,
+        "Max Loss": -132.79559490297652,
+        "Total Profit": 338.53302632265877
+    },
+    "ZEEL.NS": {
+        "Final Balance": 10402.104496707185,
+        "Total Trades": 7,
+        "Winning Trades": 3,
+        "Losing Trades": 4,
+        "Max Profit": 631.8850508481428,
+        "Max Loss": -146.898362514803,
+        "Total Profit": 529.4358138920861
+    }
+}

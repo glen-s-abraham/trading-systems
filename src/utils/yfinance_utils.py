@@ -11,7 +11,7 @@ class YfinanceUtils:
         # Fetch OHLCV data from Yahoo Finance using yfinance library
         try:
             data = yf.download(
-                symbol, start=start_date, end=end_date, interval=interval
+                symbol, start=start_date, end=end_date, interval=interval,timeout=1
             )
             if data.empty:
                 raise ValueError(
