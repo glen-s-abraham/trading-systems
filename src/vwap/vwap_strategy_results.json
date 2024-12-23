@@ -1,0 +1,47 @@
+{
+    "POLYCAB.NS": {
+        "Final Balance": 14905.602456114899,
+        "Total Trades": 7,
+        "Winning Trades": 3,
+        "Losing Trades": 4,
+        "Max Profit": 120.96992413745829,
+        "Max Loss": -106.6335578463586,
+        "Total Profit": 45.602456114898814
+    },
+    "SRF.NS": {
+        "Final Balance": 14651.463866990709,
+        "Total Trades": 6,
+        "Winning Trades": 1,
+        "Losing Trades": 5,
+        "Max Profit": 128.81774766023955,
+        "Max Loss": -97.50072644561624,
+        "Total Profit": -228.536133009291
+    },
+    "YESBANK.NS": {
+        "Final Balance": 14873.44182526851,
+        "Total Trades": 4,
+        "Winning Trades": 1,
+        "Losing Trades": 3,
+        "Max Profit": 104.98244109643747,
+        "Max Loss": -65.00990010138412,
+        "Total Profit": -48.30060416215565
+    },
+    "FEDERALBNK.NS": {
+        "Final Balance": 14890.763013917996,
+        "Total Trades": 5,
+        "Winning Trades": 2,
+        "Losing Trades": 3,
+        "Max Profit": 183.95594304259612,
+        "Max Loss": -106.04244766653937,
+        "Total Profit": -9.236986082003568
+    },
+    "IDEA.NS": {
+        "Final Balance": 14861.110962573279,
+        "Total Trades": 5,
+        "Winning Trades": 1,
+        "Losing Trades": 4,
+        "Max Profit": 252.68019720259872,
+        "Max Loss": -100.38252866619041,
+        "Total Profit": -51.92634602279759
+    }
+}
